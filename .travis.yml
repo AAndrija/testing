@@ -1,8 +1,8 @@
 language: cpp
 
-compiler:
-	- gcc
-	- clang
+env:
+  global:
+   - RUN_TESTS = true
 
 matrix:
 	include:
