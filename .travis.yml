@@ -22,23 +22,6 @@ matrix:
 	     - ubuntu-toolchain-r-test
 	  env:
 	     - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
-	     
-	- os: linux
-	  dist: trusty
-	  become: yes
-    sudo: true
-	  compiler: clang
-	  addons:
-	   apt:
-	    packages:
-	     - cmake-data
-	     - cmake
-	     - clang-5.0.0
-	     - clang++-5.0.0
-	    sources:
-	     - ubuntu-toolchain-r-test
-	  env:
-             - MATRIX_EVAL="CC=clang-5.0.0 && CXX=clang++-5.0.0"
 
 before_install:
   - test -n $CC  && unset CC
