@@ -15,8 +15,8 @@ matrix:
         packages:
         - cmake-data
         - cmake
-        - gcc-4.8
-        - g++-4.8
+        - gcc-7
+        - g++-7
         sources:
         - ubuntu-toolchain-r-test
       env:
