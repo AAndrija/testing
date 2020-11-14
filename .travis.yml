@@ -26,7 +26,7 @@ before_install:
   - test -n $CC  && unset CC
   - test -n $CXX && unset CXX
   - sudo apt-get install libgtest-dev
-  - sudo apt-get install cmake=3.9.0 # install cmake
+  - sudo apt-get install cmake # install cmake
   - cd /usr/src/gtest
   - cmake CMakeLists.txt
   - sudo make
