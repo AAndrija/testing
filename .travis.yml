@@ -11,12 +11,12 @@ addons:
     packages:
       - gcc-6
       - g++-6
-      #- cmake-data
-      #- cmake
+      - cmake-data
+      - cmake
 
 before_install:
   - sudo apt-get install libgtest-dev
-  - sudo apt-get install cmake
+  #- sudo apt-get install cmake
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
