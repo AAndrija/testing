@@ -41,6 +41,9 @@ install:
   #- PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   # don't forget to switch back to the main build directory once you are done
   #- cd ${TRAVIS_BUILD_DIR}
+  - sudo cmake CMakeLists.txt
+  - sudo make
+  - sudo cp *.a /usr/lib
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
@@ -48,9 +51,7 @@ script:
   - cd /usr/src/gtest
   - ls /usr/local/cmake-3.9.2 -a
   - ls /usr/local/bin
-  - sudo cmake CMakeLists.txt
-  - sudo make
-  - sudo cp *.a /usr/lib
+  
   - cd /home/travis/build/AAndrija/testing
   - mkdir build
   - cd build
