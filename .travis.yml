@@ -17,6 +17,7 @@ matrix:
         - gcc-7
         - g++-7
         - cmake
+        - cmake-data
         sources:
         - kalakris-cmake
         - ubuntu-toolchain-r-test
