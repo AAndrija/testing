@@ -1,43 +1,32 @@
-language: cpp
-
-env:
-  global:
-   - RUN_TESTS = true
-
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: true
-      become: yes
-      compiler: gcc
-      addons:
-      apt:
-        packages:
-        - gcc-7
-        - g++-7
-        - cmake
-        - cmake-data
-        sources:
-        - ubuntu-toolchain-r-test
-      env:
-        - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
+dist: trusty
+sudo: required
+language:
+  -cpp
+compiler:
+  -gcc
+addons:
+  apt:
+    sources:
+      -ubuntu-toolchain-r-test
+    packages:
+      - gcc-6
+      - g++-6
+      - cmake
 
 before_install:
-  - test -n $CC  && unset CC
-  - test -n $CXX && unset CXX
-  - sudo apt-get install cmake
-  - sudo apt-get install libgtest-dev
+  -sudo apt-get install libgtest-dev
+  
+  
+script:
+  - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+  - ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - cd /usr/src/gtest
   - sudo cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
-install:
-  
-script:
-     - cd /home/travis/build/AAndrija/testing
-     - sudo mkdir -p build
-     - cd build
-     - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
-     - sudo cmake --build .
-     - ./pink_alignment_test
+  - cd /home/travis/build/AAndrija/testing
+  - sudo mkdir -p build
+  - cd build
+  - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
+  - sudo cmake --build .
+  - ./pink_alignment_test
