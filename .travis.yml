@@ -5,7 +5,7 @@ env:
    - RUN_TESTS = true
 
 matrix:
-	include:
+  include:
     - os: linux
       dist: trusty
       sudo: true
