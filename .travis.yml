@@ -68,7 +68,7 @@ script:
     ############################################################################
     # Build main and tests
     ############################################################################
-     - mkdir -p build
+     - sudo mkdir -p build
      - cd build
      - cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
      - cmake --build .
