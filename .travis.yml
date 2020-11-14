@@ -11,8 +11,8 @@ addons:
     packages:
       - gcc-6
       - g++-6
-      - cmake-data
-      - cmake
+      #- cmake-data
+      #- cmake
 
 before_install:
   - sudo apt-get install libgtest-dev
@@ -22,15 +22,17 @@ script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - cd /usr/src/gtest
+  - mkdir $HOME/usr
+  - export PATH="$HOME/usr/bin:$PATH"
+  - wget https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh
+  - chmod +x cmake-3.7.2-Linux-x86_64.sh
+  - ./cmake-3.7.2-Linux-x86_64.sh --prefix=$HOME/usr --exclude-subdir --skip-license
   - sudo cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
   - cd /home/travis/build/AAndrija/testing
   - sudo mkdir build
   - cd build
-  - CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.1-Linux-x86_64.tar.gz"
-  - mkdir cmake && travis_retry wget --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-  - export PATH=${DEPS_DIR}/cmake/bin:${PATH}
   - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
   - sudo cmake --build .
   - ./pink_alignment_test
