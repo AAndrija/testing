@@ -44,7 +44,7 @@ before_install:
     #  fi
     - pwd=$(pwd)
     - sudo apt-get install libgtest-dev
-    - sudo apt-get install cmake=3.9 # install cmake
+    - sudo apt-get install cmake=3.9.0 # install cmake
     - cd /usr/src/gtest
     - sudo cmake CMakeLists.txt
     - sudo make
