@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # set the project name and version
-cmake_policy(NEW)
+cmake_policy(SET CMP0048 NEW)
 project(pink_mapper VERSION 0.2.0)
 
 configure_file(Pink_mapperConfig.h.in Pink_mapperConfig.h)
