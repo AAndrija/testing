@@ -41,6 +41,7 @@ install:
   #- PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   # don't forget to switch back to the main build directory once you are done
   #- cd ${TRAVIS_BUILD_DIR}
+  - cd /usr/src/gtest
   - sudo cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
@@ -48,7 +49,6 @@ install:
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-  - cd /usr/src/gtest
   - ls /usr/local/cmake-3.9.2 -a
   - ls /usr/local/bin
   
