@@ -9,6 +9,7 @@ matrix:
 	- os: linux
 	  dist: trusty
 	  become: yes
+    sudo: true
 	  compiler: gcc
 	  addons:
 	   apt:
@@ -25,6 +26,7 @@ matrix:
 	- os: linux
 	  dist: trusty
 	  become: yes
+    sudo: true
 	  compiler: clang
 	  addons:
 	   apt:
