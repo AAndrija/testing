@@ -30,6 +30,7 @@ script:
   - cd /home/travis/build/AAndrija/testing
   - sudo mkdir build
   - cd build
+  - ls ../src
   - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
   - sudo cmake --build .
   - ./pink_alignment_test
