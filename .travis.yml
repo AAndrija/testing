@@ -8,7 +8,8 @@ matrix:
   include:
     - os: linux
       dist: trusty
-      sudo: false
+      sudo: true
+      become: yes
       compiler: gcc
       addons:
       apt:
@@ -36,10 +37,10 @@ install:
   #- |
   #  if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
   - sudo apt-get purge cmake
-  - CMAKE_INSTALLER=install-cmake.sh
-  - curl -sSL https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh -o ${CMAKE_INSTALLER}
-  - chmod +x ${CMAKE_INSTALLER}
-  - sudo ./${CMAKE_INSTALLER} --prefix=/usr/local --skip-license
+  - CMAKE_URL="http://www.cmake.org/files/v3.5/cmake-3.5.1-Linux-x86_64.tar.gz"
+  - sudo mkdir -p ${DEPS_DIR}/cmake
+  - travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C ${DEPS_DIR}/cmake
+  - export PATH=${DEPS_DIR}/cmake/bin:${PATH}
   #  fi
   
 script:
