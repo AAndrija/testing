@@ -24,11 +24,7 @@ matrix:
 before_install:
   - test -n $CC  && unset CC
   - test -n $CXX && unset CXX
-  - mkdir $HOME/usr
-  - export PATH="$HOME/usr/bin:$PATH"
-  - wget https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh
-  - chmod +x cmake-3.7.2-Linux-x86_64.sh
-  - ./cmake-3.7.2-Linux-x86_64.sh --prefix=$HOME/usr --exclude-subdir --skip-license
+  - sudo apt-get update cmake
   - sudo apt-get install libgtest-dev
   - cd /usr/src/gtest
   - sudo cmake CMakeLists.txt
