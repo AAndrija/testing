@@ -42,10 +42,7 @@ before_install:
           travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C ${DEPS_DIR}/cmake
           export PATH=${DEPS_DIR}/cmake/bin:${PATH}
       fi
-    - pwd
-    - pwd
-    - pwd
-    - pwd
+    - pwd=$(pwd)
     - sudo apt-get install libgtest-dev
     - sudo apt-get install cmake # install cmake
     - cd /usr/src/gtest
@@ -72,6 +69,7 @@ script:
     ############################################################################
     # Build main and tests
     ############################################################################
+     - cd pwd
      - sudo mkdir -p build
      - cd build
      - cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
