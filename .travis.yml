@@ -14,8 +14,6 @@ matrix:
       addons:
       apt:
         packages:
-        - cmake-data
-        - cmake
         - gcc-7
         - g++-7
         sources:
@@ -26,12 +24,6 @@ matrix:
 before_install:
   - test -n $CC  && unset CC
   - test -n $CXX && unset CXX
-  - sudo apt-get install libgtest-dev
-  - sudo apt-get install cmake # install cmake
-  - cd /usr/src/gtest
-  - sudo cmake CMakeLists.txt
-  - sudo make
-  - sudo cp *.a /usr/lib
 
 install:
   #- |
@@ -41,12 +33,19 @@ install:
   - sudo mkdir -p ${DEPS_DIR}/cmake
   - travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | sudo tar --strip-components=1 -xz -C ${DEPS_DIR}/cmake
   - export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+  
+  - sudo apt-get install libgtest-dev
+  #- sudo apt-get install cmake # install cmake
+  - cd /usr/src/gtest
+  - sudo cmake CMakeLists.txt
+  - sudo make
+  - sudo cp *.a /usr/lib
   #  fi
   
 script:
      - cd /home/travis/build/AAndrija/testing
      - sudo mkdir -p build
      - cd build
-     - sudo CXX=/usr/bin/g++-7 CC=/usr/bin/gcc-7 cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
+     - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
      - sudo cmake --build .
      - ./pink_alignment_test
