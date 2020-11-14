@@ -31,6 +31,6 @@ script:
   - sudo mkdir build
   - cd build
   - ls ../src
-  - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
-  - sudo cmake --build .
+  - cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
+  - cmake --build .
   - ./pink_alignment_test
