@@ -16,6 +16,8 @@ matrix:
         packages:
         - gcc-7
         - g++-7
+        - cmake
+        - cmake-data
         sources:
         - ubuntu-toolchain-r-test
       env:
@@ -24,7 +26,7 @@ matrix:
 before_install:
   - test -n $CC  && unset CC
   - test -n $CXX && unset CXX
-  - sudo apt-get update cmake
+  #- sudo apt-get update cmake
   - sudo apt-get install libgtest-dev
   - cd /usr/src/gtest
   - sudo cmake CMakeLists.txt
