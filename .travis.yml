@@ -46,7 +46,7 @@ before_install:
     - sudo apt-get install libgtest-dev
     - sudo apt-get install cmake # install cmake
     #- cd /usr/src/gtest
-    - sudo cmake /usr/src/gtest/CMakeLists.txt
+    - sudo cmake CMakeLists.txt
     - sudo make
  
 
@@ -69,7 +69,7 @@ script:
     ############################################################################
     # Build main and tests
     ############################################################################
-     #- cd pwd
+     - cd /home/travis/build/AAndrija/testing
      - sudo mkdir -p build
      - cd build
      - cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
