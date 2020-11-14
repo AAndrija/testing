@@ -16,7 +16,9 @@ matrix:
         packages:
         - gcc-7
         - g++-7
+        - cmake
         sources:
+        - kalakris-cmake
         - ubuntu-toolchain-r-test
       env:
         - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
@@ -35,7 +37,7 @@ install:
   #- export PATH=${DEPS_DIR}/cmake/bin:${PATH}
   
   - sudo apt-get install libgtest-dev
-  - sudo apt-get install cmake # install cmake
+  #- sudo apt-get install cmake # install cmake
   - cd /usr/src/gtest
   - sudo cmake CMakeLists.txt
   - sudo make
