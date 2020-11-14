@@ -28,7 +28,7 @@ before_install:
   - sudo apt-get install libgtest-dev
   #- sudo apt-get install cmake=3.9.0 # install cmake
   - cd /usr/src/gtest
-  - sudo cmake CMakeLists.txt
+  - cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
   
@@ -39,5 +39,3 @@ script:
      - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
      - sudo cmake --build .
      - ./pink_alignment_test
-	  
-	
