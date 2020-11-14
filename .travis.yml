@@ -16,17 +16,17 @@ addons:
 
 before_install:
   - sudo apt-get install libgtest-dev
-  
-  
-script:
-  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-  - cd /usr/src/gtest
   - mkdir $HOME/usr
   - export PATH="$HOME/usr/bin:$PATH"
   - sudo wget https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh
   - sudo chmod +x cmake-3.7.2-Linux-x86_64.sh
   - sudo ./cmake-3.7.2-Linux-x86_64.sh --prefix=/usr/local/bin --exclude-subdir --skip-license
+  
+script:
+  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+  - cd /usr/src/gtest
+  - ls /usr/local -a
   - sudo cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
