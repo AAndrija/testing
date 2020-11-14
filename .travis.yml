@@ -26,7 +26,7 @@ script:
   - export PATH="$HOME/usr/bin:$PATH"
   - sudo wget https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh
   - sudo chmod +x cmake-3.7.2-Linux-x86_64.sh
-  - ./cmake-3.7.2-Linux-x86_64.sh --prefix=/usr/local/bin --exclude-subdir --skip-license
+  - sudo ./cmake-3.7.2-Linux-x86_64.sh --prefix=/usr/local/bin --exclude-subdir --skip-license
   - sudo cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
