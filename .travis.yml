@@ -11,6 +11,7 @@ addons:
     packages:
       - gcc-6
       - g++-6
+      - cmake-data
       - cmake
 
 before_install:
