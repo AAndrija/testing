@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9.2)
+cmake_minimum_required(VERSION 3.3.2)
 
 # set the project name and version
 cmake_policy(SET CMP0048 NEW)
