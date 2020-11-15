@@ -94,7 +94,7 @@ install:
       cd googletest;
       mkdir install;
       cd install;
-      cmake ../;
+      CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake ../;
       make;
       sudo make install;
       source ~/.bash_profile;
