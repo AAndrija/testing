@@ -42,6 +42,9 @@ matrix:
           - clang-5.0
       env:
         - MATRIX_EVAL="CC=/usr/local/clang-5.0.0/bin/clang-5.0 && CXX=/usr/local/clang-5.0.0/bin/clang++"
+    
+    - os: osx
+      osx_image: xcode10.1
 
 
 
