@@ -46,6 +46,10 @@ matrix:
     - os: osx
       compiler: clang
       osx_image: xcode10.1
+    
+    - os: osx
+      compiler: gcc
+      osx_image: xcode8
 
 
 
