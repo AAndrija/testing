@@ -1,10 +1,10 @@
 dist: trusty
 sudo: required
 language:
-  -cpp
+  - cpp
 compiler:
-  -clang
-  -gcc
+  - clang
+  - gcc
 addons:
   apt:
     sources:
