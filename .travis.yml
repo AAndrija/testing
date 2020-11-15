@@ -46,12 +46,14 @@ matrix:
     - os: osx
       compiler: clang
       osx_image: xcode10.1
+      env:
+        - COMPIC="clang"
     
     - os: osx
       compiler: gcc
       osx_image: xcode8
-
-
+      env:
+        - COMPIC="gcc"
 
 before_install:
   - eval "${MATRIX_EVAL}"
@@ -74,7 +76,7 @@ install:
       sudo make;
       sudo cp *.so /usr/lib;
     fi
-  - if [ ${TRAVIS_OS_NAME} == "osx" && ${TRAVIS_COMPILER} == "clang" ]; then
+  - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "clang" ]; then
       cd ~/;
       git clone https://github.com/google/googletest.git;
       cd googletest;
@@ -85,7 +87,7 @@ install:
       sudo make install;
       source ~/.bash_profile;
     fi
-  - if [ ${TRAVIS_OS_NAME} == "osx" && ${TRAVIS_COMPILER} == "gcc" ]; then
+  - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
       git clone https://github.com/google/googletest;
       cd googletest;
       mkdir build;
