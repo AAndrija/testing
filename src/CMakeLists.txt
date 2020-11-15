@@ -7,7 +7,7 @@ project(pink_mapper VERSION 0.2.0)
 configure_file(Pink_mapperConfig.h.in Pink_mapperConfig.h)
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(ALIGN_INCLUDES ${PROJECT_SOURCE_DIR}/../include/align)
