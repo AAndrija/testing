@@ -53,14 +53,21 @@ matrix:
           - llvm-toolchain-precise-5.0
         packages:
           - clang-5.0
-          - gcc-6
-          - g++-6
       env:
         - TRAVIS_COMPILER="clang"
     
     - os: osx
       compiler: gcc
       osx_image: xcode8
+      addons:
+        apt:
+        sources:
+          - ubuntu-toolchain-r-test
+          - llvm-toolchain-precise-5.0
+        packages:
+          - clang-5.0
+          - gcc-6
+          - g++-6
       env:
         - TRAVIS_COMPILER="gcc"
 
@@ -101,7 +108,7 @@ install:
       cd googletest;
       mkdir build;
       cd build;
-      CC=/usr/local/clang-5.0.0/bin/clang-5.0 CXX=/usr/local/clang-5.0.0/bin/clang++ cmake  ../;
+      CC=/usr/local/clang-5.0.0/bin/clang-5.0 CXX=/usr/local/clang-5.0.0/bin/clang++ cmake ../;
       make;
       make install;
     fi
