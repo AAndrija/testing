@@ -66,8 +66,7 @@ install:
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-  - echo ${TRAVIS_COMPILER}
-  - ls /usr/local
+  - ls /usr/local/clang-5.0.0/bin
   - cd /home/travis/build/AAndrija/testing
   - mkdir build
   - cd build
