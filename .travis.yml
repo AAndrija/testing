@@ -89,23 +89,19 @@ install:
     fi
   - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
       cd ~/;
-      curl -LOk https://github.com/google/googletest/archive/release-1.10.0.tar.gz
-      tar -zxvf release-1.10.0.tar.gz
-      rm release-1.10.0.tar.gz
-
-      cd googletest-release-1.10.0/
-      mkdir build
-      cd build
-      cmake -DCMAKE_CXX_FLAGS=-std=c++11 ..
-      make
-
-      cp -a ../googletest/include/* /usr/local/include
-      cp -a ../googlemock/include/* /usr/local/include
+      curl -LOk https://github.com/google/googletest/archive/release-1.10.0.tar.gz;
+      tar -zxvf release-1.10.0.tar.gz;
+      rm release-1.10.0.tar.gz;
+      cd googletest-release-1.10.0/;
+      mkdir build;
+      cd build;
+      cmake -DCMAKE_CXX_FLAGS=-std=c++11 ..;
+      make;
+      cp -a ../googletest/include/* /usr/local/include;
+      cp -a ../googlemock/include/* /usr/local/include;
       find . -name "*.a" -exec cp -a {} /usr/local/lib \;
-
-      # clean
-      cd ../..
-      rm -r googletest-release-1.10.0
+      cd ../..;
+      rm -r googletest-release-1.10.0;
     fi
 
 script:
