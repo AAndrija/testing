@@ -87,7 +87,6 @@ install:
       sudo make install;
       source ~/.bash_profile;
     fi
-
  - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
       git clone https://github.com/google/googletest;
       cd googletest;
@@ -97,7 +96,6 @@ install:
       make;
       make install;
    fi
-
 script:
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
       sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc;
