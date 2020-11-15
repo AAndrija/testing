@@ -45,6 +45,8 @@ install:
   - sudo cmake CMakeLists.txt
   - sudo make
   - sudo cp *.a /usr/lib
+  - sudo ln -s /usr/lib/libgtest.a /usr/local/lib/gtest/libgtest.a
+  - sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/gtest/libgtest_main.a
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
