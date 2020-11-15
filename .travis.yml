@@ -41,7 +41,7 @@ matrix:
         packages:
           - clang-5.0
       env:
-        - MATRIX_EVAL="CC=/usr/local/clang-5.0.0/bin/clang-5.0 && CXX=/usr/local/clang-5.0.0/bin/clang++-5.0"
+        - MATRIX_EVAL="CC=/usr/local/clang-5.0.0/bin/clang-5.0 && CXX=/usr/local/clang-5.0.0/bin/clang++"
 
 
 
@@ -59,9 +59,9 @@ install:
   #  export CXX=/usr/bin/clang++;
   #  fi
   - cd /usr/src/gtest
-  #- sudo cmake -DBUILD_SHARED_LIBS=ON
-  #- sudo make
-  #- sudo cp *.so /usr/lib
+  - sudo cmake -DBUILD_SHARED_LIBS=ON
+  - sudo make
+  - sudo cp *.so /usr/lib
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
