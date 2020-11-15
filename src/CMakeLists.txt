@@ -45,7 +45,7 @@ if (alignment_build_tests)
   
   
   add_executable(pink_alignment_test ${TEST_SRC_FILES})
-  target_link_libraries(pink_alignment_test GTest::GTest GTest::Main)
+  target_link_libraries(pink_alignment_test gtest gtest_main)
 endif ()
 
 
