@@ -46,10 +46,14 @@ matrix:
     - os: osx
       compiler: clang
       osx_image: xcode10.1
+      env:
+        - TRAVIS_COMPILER="clang"
     
     - os: osx
       compiler: gcc
       osx_image: xcode8
+      env:
+        - TRAVIS_COMPILER="gcc"
 
 before_install:
   - eval "${MATRIX_EVAL}"
