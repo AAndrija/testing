@@ -3,12 +3,14 @@ sudo: required
 language:
   -cpp
 compiler:
+  -clang
   -gcc
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
+      - clang-3.7
       - gcc-6
       - g++-6
       #- cmake-data
