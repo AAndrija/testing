@@ -65,12 +65,11 @@ before_install:
       cd googletest;
       mkdir install;
       cd install;
-      cmake ../;  #creates a make file 
-      make; #compiles Google Test
-      sudo make install; #installs Google Testecho "export CPLUS_INCLUDE_PATH=/usr/local/include" >> ~/.bash_profileecho "export LIBRARY_PATH=/usr/local/lib" >> ~/.bash_profile
+      cmake ../;
+      make;
+      sudo make install;
       source ~/.bash_profile;
     fi
-  
 
 install:
   #- if [ "${TRAVIS_COMPILER}"" == "clang" ]; then
