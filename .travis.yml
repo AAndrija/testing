@@ -107,8 +107,7 @@ install:
       pwd;
     fi
 script:
-  - ls /usr/local/
-  - ls /usr/local/clang-5.0.0/bin
+  - ls /usr/local/bin
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
       sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc;
       sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++;
