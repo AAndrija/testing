@@ -54,6 +54,7 @@ matrix:
       osx_image: xcode8
       env:
         - TRAVIS_COMPILER="gcc"
+        - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
 
 before_install:
   - eval "${MATRIX_EVAL}"
@@ -93,7 +94,7 @@ install:
       cd googletest;
       mkdir build;
       cd build;
-      cmake .. -DCMAKE_CXX_STANDARD=17;
+      cmake ..;
       make;
       make install;
     fi
