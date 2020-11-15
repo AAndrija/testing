@@ -74,7 +74,6 @@ install:
       cd /usr/src/gtest;
       sudo cmake -DBUILD_SHARED_LIBS=ON;
       sudo make;
-      
     fi
   - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "clang" ]; then
       cd ~/;
@@ -95,7 +94,7 @@ install:
       cd build;
       cmake ..;
       make;
-      sudo cp *.a /usr/lib;
+      make install;
     fi
 
 script:
