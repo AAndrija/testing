@@ -105,13 +105,6 @@ install:
     fi
   - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
       pwd;
-  #    git clone https://github.com/google/googletest;
-  #    cd googletest;
-  #    mkdir build;
-  #    cd build;
-  #    CC=/usr/local/clang-5.0.0/bin/clang CXX=/usr/local/clang-5.0.0/bin/clang++ cmake ../;
-  #    make;
-  #    make install;
     fi
 script:
   - ls /usr/local/
