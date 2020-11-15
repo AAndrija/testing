@@ -74,7 +74,7 @@ install:
       sudo make;
       sudo cp *.so /usr/lib;
     fi
-  - if [ ${TRAVIS_OS_NAME} == "osx" ]; then
+  - if [ ${TRAVIS_OS_NAME} == "osx" && ${TRAVIS_COMPILER} == "clang" ]; then
       cd ~/;
       git clone https://github.com/google/googletest.git;
       cd googletest;
@@ -84,6 +84,15 @@ install:
       make;
       sudo make install;
       source ~/.bash_profile;
+    fi
+  - if [ ${TRAVIS_OS_NAME} == "osx" && ${TRAVIS_COMPILER} == "gcc" ]; then
+      git clone https://github.com/google/googletest;
+      cd googletest;
+      mkdir build;
+      cd build;
+      cmake .. -DCMAKE_CXX_STANDARD=17;
+      make;
+      make install;
     fi
 
 script:
