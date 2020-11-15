@@ -44,7 +44,7 @@ install:
   - cd /usr/src/gtest
   - sudo cmake -DBUILD_SHARED_LIBS=ON
   - sudo make
-  - sudo cp *.a /usr/lib
+  - sudo cp *.so /usr/lib
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
