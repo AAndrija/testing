@@ -59,16 +59,15 @@ install:
   #  export CXX=/usr/bin/clang++;
   #  fi
   - cd /usr/src/gtest
-  - sudo cmake -DBUILD_SHARED_LIBS=ON
-  - sudo make
-  - sudo cp *.so /usr/lib
+  #- sudo cmake -DBUILD_SHARED_LIBS=ON
+  #- sudo make
+  #- sudo cp *.so /usr/lib
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - echo ${TRAVIS_COMPILER}
-  - ls /usr/local/cmake-3.9.2 -a
-  - ls /usr/local/bin
+  - ls /usr/local
   - cd /home/travis/build/AAndrija/testing
   - mkdir build
   - cd build
