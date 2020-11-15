@@ -103,7 +103,8 @@ install:
       sudo make install;
       source ~/.bash_profile;
     fi
-  #- if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
+  - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
+      pwd;
   #    git clone https://github.com/google/googletest;
   #    cd googletest;
   #    mkdir build;
@@ -111,7 +112,7 @@ install:
   #    CC=/usr/local/clang-5.0.0/bin/clang CXX=/usr/local/clang-5.0.0/bin/clang++ cmake ../;
   #    make;
   #    make install;
-  #  fi
+    fi
 script:
   - ls /usr/local/
   - ls /usr/local/clang-5.0.0/bin
