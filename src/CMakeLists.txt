@@ -36,8 +36,9 @@ endif()
 option(alignment_build_tests "Build alignment unit tests" OFF)
 
 if (alignment_build_tests)
-  find_package(GTest REQUIRED)
   enable_testing()
+  find_package(GTest REQUIRED)
+  
 
   
   include_directories(${ALIGN_INCLUDES})

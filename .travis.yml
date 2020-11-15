@@ -42,9 +42,9 @@ install:
   # don't forget to switch back to the main build directory once you are done
   #- cd ${TRAVIS_BUILD_DIR}
   - cd /usr/src/gtest
-  - sudo cmake .
-  - sudo cmake --build . --target install
-  #- sudo cp *.a /usr/lib
+  - sudo cmake CMakeLists.txt
+  - sudo make
+  - sudo cp *.a /usr/lib
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
