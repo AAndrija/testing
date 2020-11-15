@@ -108,7 +108,7 @@ install:
       cd googletest;
       mkdir build;
       cd build;
-      CC=/usr/local/clang-5.0.0/bin/clang-5.0 CXX=/usr/local/clang-5.0.0/bin/clang++ cmake ../;
+      CC=/usr/local/clang-5.0.0/bin/clang CXX=/usr/local/clang-5.0.0/bin/clang++ cmake ../;
       make;
       make install;
     fi
