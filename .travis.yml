@@ -92,7 +92,7 @@ install:
       sudo make;
       sudo cp *.so /usr/lib;
     fi
-  - if [ ${TRAVIS_OS_NAME} == "osx" ] then
+  - if [ ${TRAVIS_OS_NAME} == "osx" ]; then
       cd ~/;
       git clone https://github.com/google/googletest.git;
       cd googletest;
