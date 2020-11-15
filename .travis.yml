@@ -74,7 +74,7 @@ install:
       cd /usr/src/gtest;
       sudo cmake -DBUILD_SHARED_LIBS=ON;
       sudo make;
-      sudo cp *.so /usr/lib;
+      
     fi
   - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "clang" ]; then
       cd ~/;
@@ -93,9 +93,9 @@ install:
       cd googletest;
       mkdir build;
       cd build;
-      cmake -DCMAKE_CXX_COMPILER="c++" -DCMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++" ..;
+      cmake ..;
       make;
-      make install;
+      sudo cp *.a /usr/lib;
     fi
 
 script:
