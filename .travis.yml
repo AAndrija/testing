@@ -88,11 +88,12 @@ install:
       source ~/.bash_profile;
     fi
   - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
+      cd ~/;
       git clone https://github.com/google/googletest;
       cd googletest;
       mkdir build;
       cd build;
-      cmake .. -DCMAKE_CXX_STANDARD=17;
+      cmake .. -DCMAKE_CXX_STANDARD=11;
       make;
       make install;
     fi
