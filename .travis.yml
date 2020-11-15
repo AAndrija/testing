@@ -1,20 +1,48 @@
-dist: trusty
-sudo: required
-language:
-  - cpp
-compiler:
-  - clang
-  - gcc
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - clang-3.7
-      - gcc-6
-      - g++-6
+#dist: trusty
+#sudo: required
+#language:
+#  - cpp
+#compiler:
+#  - gcc
+#addons:
+#  apt:
+#    sources:
+#      - ubuntu-toolchain-r-test
+#    packages:
+#      - clang-3.7
+#      - gcc-6
+#      - g++-6
       #- cmake-data
       #- cmake
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+      compiler: gcc
+      addons:
+        apt:
+        sources:
+          - ubuntu-toolchain-r-test
+        packages:
+          - gcc-6
+          - g++-6
+          
+    - os: linux
+      dist: trusty
+      sudo: required
+      compiler: clang
+      addons:
+        apt:
+        sources:
+          - ubuntu-toolchain-r-test
+          - llvm-toolchain-precise-3.7
+        packages:
+          - clang-3.7
+          - clang++-3.7
+
+
 
 before_install:
   - sudo apt-get install libgtest-dev
