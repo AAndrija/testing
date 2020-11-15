@@ -46,6 +46,15 @@ matrix:
     - os: osx
       compiler: clang
       osx_image: xcode10.1
+      addons:
+        apt:
+        sources:
+          - ubuntu-toolchain-r-test
+          - llvm-toolchain-precise-5.0
+        packages:
+          - clang-5.0
+          - gcc-6
+          - g++-6
       env:
         - TRAVIS_COMPILER="clang"
     
@@ -88,13 +97,13 @@ install:
       source ~/.bash_profile;
     fi
   - if [ ${TRAVIS_OS_NAME} == "osx" ] && [ ${TRAVIS_COMPILER} == "gcc" ]; then
-        git clone https://github.com/google/googletest;
-        cd googletest;
-        mkdir build;
-        cd build;
-        cmake ..;
-        make;
-        make install;
+      git clone https://github.com/google/googletest;
+      cd googletest;
+      mkdir build;
+      cd build;
+      CC=/usr/local/clang-5.0.0/bin/clang-5.0 CXX=/usr/local/clang-5.0.0/bin/clang++ cmake  ../;
+      make;
+      make install;
     fi
 script:
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
