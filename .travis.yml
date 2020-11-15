@@ -14,7 +14,7 @@ matrix:
         packages:
           - gcc-6
           - g++-6
-          
+
     - os: linux
       dist: trusty
       sudo: required
@@ -28,7 +28,7 @@ matrix:
           - clang-5.0
       env:
         - MATRIX_EVAL="CC=/usr/local/clang-5.0.0/bin/clang-5.0 && CXX=/usr/local/clang-5.0.0/bin/clang++"
-    
+
     - os: osx
       compiler: clang
       osx_image: xcode10.1
@@ -36,8 +36,6 @@ matrix:
     - os: osx
       compiler: gcc
       osx_image: xcode10.1
-
-
 
 before_install:
   - eval "${MATRIX_EVAL}"
@@ -71,7 +69,7 @@ install:
       sudo make install;
       source ~/.bash_profile;
     fi
-  
+
 script:
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
       sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc;
