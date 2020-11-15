@@ -103,7 +103,6 @@ install:
       sudo make install;
       source ~/.bash_profile;
     fi
-  
 script:
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
       sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc;
