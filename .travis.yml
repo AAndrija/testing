@@ -84,12 +84,12 @@ install:
     fi
   
 script:
-  # o brother
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
       sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc;
       sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++;
     fi
-  - cd ${TRAVIS_BUILD_DIR}
+  - echo ${TRAVIS_BUILD_DIR}
+  - cd /home/travis/build/AAndrija/testing
   - mkdir build
   - cd build
   - ls ../src
