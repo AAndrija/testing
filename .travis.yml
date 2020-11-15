@@ -53,8 +53,6 @@ matrix:
           - llvm-toolchain-precise-5.0
         packages:
           - clang-5.0
-      env:
-        - TRAVIS_COMPILER="clang"
 
     - os: osx
       compiler: gcc
@@ -68,8 +66,6 @@ matrix:
           - clang-5.0
           - gcc-6
           - g++-6
-      env:
-        - TRAVIS_COMPILER="gcc"
 
 before_install:
   - eval "${MATRIX_EVAL}"
