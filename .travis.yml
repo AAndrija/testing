@@ -41,7 +41,7 @@ matrix:
         packages:
           - clang-5.0
       env:
-        - MATRIX_EVAL="/usr/local/bin/CC=clang-5.0 && /usr/local/bin/CXX=clang++-5.0"
+        - MATRIX_EVAL="CC=/usr/local/clang-5.0.0/bin/clang-5.0 && CXX=/usr/local/clang-5.0.0/bin/clang++-5.0"
 
 
 
