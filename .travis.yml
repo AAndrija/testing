@@ -52,6 +52,10 @@ before_install:
   - sudo apt-get install cmake
 
 install:
+  - if [ ${TRAVIS_COMPILER} == "clang" ]; then
+    export CC=/usr/bin/clang;
+    export CXX=/usr/bin/clang++;
+    fi
   - cd /usr/src/gtest
   - sudo cmake -DBUILD_SHARED_LIBS=ON
   - sudo make
@@ -62,10 +66,6 @@ script:
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - ls /usr/local/cmake-3.9.2 -a
   - ls /usr/local/bin
-  - if [ ${TRAVIS_COMPILER} == "clang" ]; then
-      export CC=/usr/bin/clang;
-      export CXX=/usr/bin/clang++;
-    fi
   - cd /home/travis/build/AAndrija/testing
   - mkdir build
   - cd build
