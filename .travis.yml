@@ -39,8 +39,8 @@ matrix:
           - ubuntu-toolchain-r-test
           - llvm-toolchain-precise-3.7
         packages:
-          - clang-3.7
-          - clang++-3.7
+          - clang-5.0.0
+          - clang++-5.0.0
 
 
 
@@ -52,6 +52,7 @@ before_install:
   - sudo apt-get install cmake
 
 install:
+  - echo ${TRAVIS_COMPILER}
   - if [ ${TRAVIS_COMPILER} == "clang" ]; then
     export CC=/usr/bin/clang;
     export CXX=/usr/bin/clang++;
