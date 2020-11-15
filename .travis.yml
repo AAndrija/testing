@@ -87,8 +87,11 @@ script:
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
       sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc;
       sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++;
+      cd /home/travis/build/AAndrija/testing;
     fi
-  - echo ${TRAVIS_BUILD_DIR}
+  - if [ ${TRAVIS_OS_NAME} == "osx" ]; then
+      cd /Users/travis/build/AAndrija/testing;
+    fi
   - cd /home/travis/build/AAndrija/testing
   - mkdir build
   - cd build
