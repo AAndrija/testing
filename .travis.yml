@@ -37,14 +37,16 @@ matrix:
         apt:
         sources:
           - ubuntu-toolchain-r-test
-          - llvm-toolchain-precise-3.7
+          - llvm-toolchain-precise-5.0
         packages:
-          - clang-5.0.0
-          - clang++-5.0.0
+          - clang-5.0
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
 
 
 
 before_install:
+  - eval "${MATRIX_EVAL}"
   - sudo apt-get install libgtest-dev
   - sudo apt-get remove cmake cmake-data
   - sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
@@ -52,14 +54,14 @@ before_install:
   - sudo apt-get install cmake
 
 install:
-  - if [ ${TRAVIS_COMPILER} == "clang" ]; then
-    export CC=/usr/bin/clang;
-    export CXX=/usr/bin/clang++;
-    fi
+  #- if [ "${TRAVIS_COMPILER}"" == "clang" ]; then
+  #  export CC=/usr/bin/clang;
+  #  export CXX=/usr/bin/clang++;
+  #  fi
   - cd /usr/src/gtest
-  #- sudo cmake -DBUILD_SHARED_LIBS=ON
-  #- sudo make
-  #- sudo cp *.so /usr/lib
+  - sudo cmake -DBUILD_SHARED_LIBS=ON
+  - sudo make
+  - sudo cp *.so /usr/lib
   
 script:
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
