@@ -21,7 +21,7 @@ static int gap_flag;
 int call_align(string type, int match, int mismatch, int gap, int size, const vector<unique_ptr<biosoup::Sequence>> &list){
 	time_t t;
 	srand((unsigned) time(&t));
-
+	cerr << type << " " << match << " " << mismatch << " " << gap << endl;
 	//assign alignment type 
 	AlignmentType a_type;
 	if(type == "global") a_type = global;
@@ -160,8 +160,8 @@ void frag_stats(const vector<unique_ptr<biosoup::Sequence>> &list){
 }
 
 int main(int argc, char **argv){
-    string stfile = argv[1];
-    string ndfile = argv[2];
+    
+	
     int match = 0, mismatch = 1, gap = 1;
     string type = "global";
 
@@ -217,7 +217,10 @@ int main(int argc, char **argv){
         cout << "v" << pink_mapper_VERSION_MAJOR << "." << pink_mapper_VERSION_MINOR << "." << pink_mapper_VERSION_PATCH << endl;
         exit(0);
     }
+	
+	
     if(align_flag == 1){
+		string ndfile = argv[argc-1];
      	auto pp = bioparser::Parser<biosoup::Sequence>::Create<bioparser::FastaParser>(ndfile);
 	auto ss = pp->Parse(-1);
 	int interval = ss.size();
@@ -226,6 +229,8 @@ int main(int argc, char **argv){
 
 	//main function
     if(optind < argc){
+		string stfile = argv[argc-2];
+    	string ndfile = argv[argc-1];
         auto p = bioparser::Parser<biosoup::Sequence>::Create<bioparser::FastaParser>(stfile);
 
         // parse whole file

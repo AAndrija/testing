@@ -1,5 +1,5 @@
 language:
-  - cpp #ovo je komentar itekako
+  - cpp
 
 matrix:
   include:
@@ -74,13 +74,13 @@ script:
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
       sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc;
       sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++;
-      cd /home/travis/build/AAndrija/testing;
+      cd /home/travis/build/lbcb-edu/BSc-project-20-21;
     fi
   - if [ ${TRAVIS_OS_NAME} == "osx" ]; then
-      cd /Users/travis/build/AAndrija/testing;
+      cd /Users/travis/build/lbcb-edu/BSc-project-20-21;
     fi
   - mkdir build
   - cd build
-  - sudo cmake ../src -Dalignment_build_tests=ON -Dbuild_mapper=OFF
+  - sudo cmake ../src -Dmapper_build_tests=ON -Dbuild_mapper=OFF
   - sudo cmake --build .
-  - ./pink_alignment_test
+  - ./pink_mapper_test
