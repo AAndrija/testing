@@ -1,5 +1,5 @@
 language:
-  - cpp #ovo je komentar
+  - cpp #ovo je komentar itekako
 
 matrix:
   include:
