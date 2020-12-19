@@ -5,7 +5,6 @@
 using namespace std;
 
 struct kmer{
-    unsigned long int k_mer = 0;
     unsigned long int current_kmer = 0;
     unsigned long int last_kmer = 0;
     unsigned int pos = 0;
@@ -24,13 +23,10 @@ tuple<unsigned int, unsigned int, bool> findMinimizers(unsigned long int orig, u
         tuple<unsigned int, unsigned int, bool> minimizer;
         kmer origKmer;
         kmer revKmer;
-
-        origKmer.k_mer = orig;
-        revKmer.k_mer = revComp;
         
         for(int j = 0; j < window_len; j++){
-            origKmer.current_kmer = (origKmer.k_mer & (mask << (window_len - 1 - j) * 2))  >> (window_len - 1 - j) * 2;
-            revKmer.current_kmer = (revKmer.k_mer & (mask << (window_len - 1 - j) * 2))  >> (window_len - 1 - j) * 2;
+            origKmer.current_kmer = (orig & (mask << (window_len - 1 - j) * 2))  >> (window_len - 1 - j) * 2;
+            revKmer.current_kmer = (revComp & (mask << (window_len - 1 - j) * 2))  >> (window_len - 1 - j) * 2;
             if(j == 0){
                 origKmer.last_kmer = origKmer.current_kmer;
                 revKmer.last_kmer = revKmer.current_kmer;
@@ -63,39 +59,24 @@ tuple<unsigned int, unsigned int, bool> findEndMinimizers(unsigned long int orig
         kmer origKmer;
         kmer revKmer;
 
-        origKmer.k_mer = orig;
-        revKmer.k_mer = revComp;
-
         if(begin){ //find minimizers at the beginning
             for(int i = 0; i < (len - kmer_len + 1); i++){
-                origKmer.current_kmer = (origKmer.k_mer & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
-                revKmer.current_kmer = (revKmer.k_mer & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
+                origKmer.current_kmer = (orig & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
+                revKmer.current_kmer = (revComp & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
                 if(i == 0){
                     origKmer.last_kmer = origKmer.current_kmer;
                     revKmer.last_kmer = revKmer.current_kmer;
-                    if(begin){
-                        origKmer.pos = i;
-                        revKmer.pos = i;
-                    }else{
-                        origKmer.pos = sequence_len - len;
-                        revKmer.pos = sequence_len - len;
-                    }
+                    origKmer.pos = i;
+                    revKmer.pos = i;
+
                 }else{ 
                     if(origKmer.current_kmer < origKmer.last_kmer){
                         origKmer.last_kmer = origKmer.current_kmer;
-                        if(begin){
-                            origKmer.pos = i;
-                        }else{
-                            origKmer.pos = sequence_len - len + i;
-                        }
+                        origKmer.pos = i;
                     }
                     if(revKmer.current_kmer < revKmer.last_kmer){
                         revKmer.last_kmer = revKmer.current_kmer;
-                        if(begin){
-                            revKmer.pos = i;
-                        }else{
-                            revKmer.pos = sequence_len - len + i;
-                        }
+                        revKmer.pos = i;
                     }
                 }
             }
@@ -104,11 +85,11 @@ tuple<unsigned int, unsigned int, bool> findEndMinimizers(unsigned long int orig
             for(int i = 0; i < len; i++){
                 maskEnd = maskEnd << 2 | 3;
             }
-            origKmer.k_mer = orig & maskEnd;
-            revKmer.k_mer = revComp & maskEnd;
+            orig = orig & maskEnd;
+            revComp = revComp & maskEnd;
             for(int i = 0; i < (len - kmer_len + 1); i++){
-                origKmer.current_kmer = (origKmer.k_mer & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
-                revKmer.current_kmer = (revKmer.k_mer & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
+                origKmer.current_kmer = (orig & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
+                revKmer.current_kmer = (revComp & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
                 if(i == 0){
                     origKmer.last_kmer = origKmer.current_kmer;
                     revKmer.last_kmer = revKmer.current_kmer;
@@ -126,6 +107,7 @@ tuple<unsigned int, unsigned int, bool> findEndMinimizers(unsigned long int orig
                 }
             }
         }
+
         if(origKmer.last_kmer < revKmer.last_kmer){ 
             endMinimizer = make_tuple(origKmer.last_kmer, origKmer.pos, true);
         }else{
@@ -170,8 +152,8 @@ vector<tuple<unsigned int, unsigned int, bool>> Minimize(
             orig = 0;
             revComp = 0;
             len++;
-            
         }
+
         len = kmer_len;
         while(len < (window_len + kmer_len - 1)){
             for(int i = 0; i < len; i++){
@@ -182,7 +164,6 @@ vector<tuple<unsigned int, unsigned int, bool>> Minimize(
             orig = 0;
             revComp = 0;
             len++;
-            
         }
 
         sort(minimizers.begin(), minimizers.end());
@@ -208,8 +189,15 @@ int main(){
     /* char sequence[] = {'T', 'G', 'T', 'C', 'T', 'C', 'T', 'G', 'T', 'G', 'T', 'G', 'G', 'A', 'T', 'T', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'G', 'A', 'G', 'T', 'G', 'T', 'C'};
     mins = Minimize(sequence, sizeof(sequence), 3, 3); */
 
-    char sequence[] = {'A','G','C','T','T','T','T','C','A','T','T','C','T','G','A','C','T','G','C','A','A','C','G','G','G','C','A','A','T','A','T','G','T','C','T','C','T','G','T','G','T','G','G','A','T','T','A','A','A','A','A','A','A','G','A','G','T','G','T','C','T','G','A','T','A','G','C','A','G','C','T','T','C','T','G','A','A','C','T','G'};
-    mins = Minimize(sequence, sizeof(sequence), 5, 3);
+    /* char sequence[] = {'A','G','C','T','T','T','T','C','A','T','T','C','T','G','A','C','T','G','C','A','A','C','G','G','G','C','A','A','T','A','T','G','T','C','T','C','T','G','T','G','T','G','G','A','T','T','A','A','A','A','A','A','A','G','A','G','T','G','T','C','T','G','A','T','A','G','C','A','G','C','T','T','C','T','G','A','A','C','T','G'};
+    mins = Minimize(sequence, sizeof(sequence), 5, 3); */
+
+    /* char sequence[] = {'T', 'G', 'G', 'T', 'T', 'T', 'T', 'C', 'A', 'T', 'T', 'C', 'T', 'G', 'A', 'C', 'T', 'G', 'C', 'A', 'A', 'C', 'G', 'G', 'G', 'C', 'A', 'A', 'T', 'A'};
+    mins = Minimize(sequence, sizeof(sequence), 5, 3); */
+
+    /* char sequence[] = {'A','G','C','T','T','T','T','C','A','T','T','C','T','G','A','C','T','G','C','A','A','C','G','G','G','C','A','A','T','A','T','G','T','C','T','C','T','G','T','G','T','G','G','A','T','T','A','A','A','A','A','A','A','G','A','G','T','G','T','C','T','G','A','T','A','G','C','A','G','C','T','T','C','T','G','A','A','C','T','G'};
+    mins = Minimize(sequence, sizeof(sequence), 15, 5); */
+
     for(auto min : mins){
         cout << get<0>(min) << " " << get<1>(min) << " " << get<2>(min) << endl;
     }
