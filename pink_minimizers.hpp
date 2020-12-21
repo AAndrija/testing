@@ -53,7 +53,7 @@ tuple<unsigned int, unsigned int, bool> findMinimizers(unsigned long int orig, u
 }
 
 tuple<unsigned int, unsigned int, bool> findEndMinimizers(unsigned long int orig, unsigned long int revComp, unsigned int sequence_len, 
-    unsigned int kmer_len, unsigned int window_len, unsigned long int len, unsigned int mask, bool begin){
+    unsigned int kmer_len, unsigned int window_len, unsigned long int len, unsigned long int mask, bool begin){
 
         tuple<unsigned int, unsigned int, bool> endMinimizer;
         kmer origKmer;
@@ -61,8 +61,8 @@ tuple<unsigned int, unsigned int, bool> findEndMinimizers(unsigned long int orig
 
         if(begin){ //find minimizers at the beginning
             for(int i = 0; i < (len - kmer_len + 1); i++){
-                origKmer.current_kmer = (orig & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
-                revKmer.current_kmer = (revComp & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
+                origKmer.current_kmer = (orig & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
+                revKmer.current_kmer = (revComp & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
                 if(i == 0){
                     origKmer.last_kmer = origKmer.current_kmer;
                     revKmer.last_kmer = revKmer.current_kmer;
@@ -88,8 +88,8 @@ tuple<unsigned int, unsigned int, bool> findEndMinimizers(unsigned long int orig
             orig = orig & maskEnd;
             revComp = revComp & maskEnd;
             for(int i = 0; i < (len - kmer_len + 1); i++){
-                origKmer.current_kmer = (orig & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
-                revKmer.current_kmer = (revComp & (mask << (len - kmer_len + i) * 2)) >> ((len - kmer_len + i) * 2);
+                origKmer.current_kmer = (orig & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
+                revKmer.current_kmer = (revComp & (mask << (len - kmer_len - i) * 2)) >> ((len - kmer_len - i) * 2);
                 if(i == 0){
                     origKmer.last_kmer = origKmer.current_kmer;
                     revKmer.last_kmer = revKmer.current_kmer;
